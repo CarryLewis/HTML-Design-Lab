@@ -242,3 +242,96 @@ Never remove an experiment in favor of a “better” version.
 The Lab succeeds when a new problem such as “explain a complex biological mechanism” can be answered by searching here and combining patterns (Animated Process Diagram + Scientific Mechanism + Layered Annotation) into a new HTML experience.
 
 The Lab is a medium for thinking, explanation, exploration, and visual storytelling.
+
+---
+
+## Do not copy interfaces. Extract design intelligence.
+
+A website is a specimen, not a source file.
+
+```
+REFERENCE → OBSERVE → DECONSTRUCT → ABSTRACT → PATTERN
+    → EXPERIMENT → ADAPT → IMPLEMENT → REFLECT → PATTERN LIBRARY
+```
+
+The question is never “How do we reproduce this website?”
+
+It is “What design intelligence can we extract and reuse elsewhere?”
+
+Decompose in this order:
+
+Website → Visual language → Layout logic → Information architecture → Interaction language → Motion language → Visualization strategy → Component patterns → Underlying principle
+
+---
+
+## Observation is not interpretation
+
+Every reference has two layers. Keep them separate.
+
+**Observation** — what is directly visible (large type, slow transitions, floating nav).
+
+**Interpretation** — why it might work (hierarchy, contemplative pacing, orientation during exploration).
+
+Never mix the two without labeling which is which.
+
+---
+
+## Patterns, not copies
+
+Do not store “particle animation from Website X.”
+
+Store a named principle at a height that travels:
+
+**Progressive Field Formation** — complex structure emerges gradually from individual elements. Useful for knowledge graphs, mechanisms, ecosystems, networks.
+
+A pattern is never copied into a project. Transfer is always:
+
+Reference → abstract principle → project context → adaptation → implementation
+
+If a pattern does not fit semantically, visually, cognitively, technically, in performance, or on mobile — say so. Do not force reuse.
+
+Preserve originals. Adaptations, variants, and composites are new records.
+
+---
+
+## Pattern maturity
+
+```
+DISCOVERED → DECONSTRUCTED → EXPERIMENTAL → VALIDATED → REUSABLE → CORE PATTERN
+```
+
+| State | Meaning |
+| --- | --- |
+| DISCOVERED | Seen in an external reference |
+| DECONSTRUCTED | Mechanism understood |
+| EXPERIMENTAL | Reimplemented independently in the Lab |
+| VALIDATED | Used in a meaningful project context |
+| REUSABLE | Stable across more than one project |
+| CORE PATTERN | Part of the personal design language |
+
+---
+
+## Operating modes
+
+When asked to **analyze** a site, screenshot, or HTML: enter Critique Mode. Do not recreate it.
+
+When asked to **use this design for a project**: enter Adaptation Mode. Name what remains and what changes before implementing.
+
+When asked to **implement this pattern**: enter Implementation Mode. Smallest change, preserve existing behavior, no unrelated rewrites.
+
+When asked **what design system is this**: enter Reverse Engineering Mode. Infer Design DNA. Do not restyle the source.
+
+Playbooks live in [`modes/`](modes/).
+
+---
+
+## Project context overrides generic patterns
+
+Before touching another repository, write a Project Design Brief (`briefs/`). Audit first. Search the Lab second. Adapt logic, do not import chrome.
+
+The cycle is:
+
+```
+Projects teach the Lab → the Lab improves projects
+→ new problems → new patterns → expanded language → back to the Lab
+```

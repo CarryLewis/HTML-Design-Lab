@@ -2,13 +2,13 @@
 
 A laboratory for interactive visual systems.
 
-This is not a website, a portfolio, or a template. It is a long-term HTML visual design laboratory and reusable design knowledge base: isolated experiments that accumulate ways to explain things through HTML.
+This is not a website, a portfolio, or a template. It is a long-term HTML visual design laboratory: references are deconstructed, patterns are extracted, experiments test them, and production projects adapt them.
 
-Read [DESIGN_CONSTITUTION.md](DESIGN_CONSTITUTION.md) before adding work. Browse experiments in [DESIGN_INDEX.md](DESIGN_INDEX.md) or the [gallery](lab/gallery.html).
+Read [DESIGN_CONSTITUTION.md](DESIGN_CONSTITUTION.md) before adding work. Browse experiments in [DESIGN_INDEX.md](DESIGN_INDEX.md) or the [gallery](lab/gallery.html). Design knowledge lives in [DESIGN_KNOWLEDGE.md](DESIGN_KNOWLEDGE.md).
 
 ## Serve locally
 
-Experiments and the gallery load JSON over HTTP, so open the repo through a static server:
+JSON indexes load over HTTP:
 
 ```bash
 python3 -m http.server 8080
@@ -22,12 +22,19 @@ No build step. No framework. Each experiment is a self-contained folder of HTML,
 
 ```
 DESIGN_CONSTITUTION.md   living rules
-DESIGN_INDEX.md          human catalog
+DESIGN_INDEX.md          experiment catalog
+DESIGN_KNOWLEDGE.md      reference / pattern / language hub
 CHANGELOG.md             lab-level changelog
 index.html               lab homepage
 tokens/                  controllable design tokens + visual languages
-lab/                     gallery, playground, machine-readable index
+lab/                     gallery, knowledge graph, playground, JSON indexes
 experiments/             isolated experiments by category
+references/              design specimens (analysis, not copies)
+patterns/                named principles with maturity
+languages/               interaction, motion, visualization vocabularies
+dna/                     compact visual-language sketches
+briefs/                  project design briefs
+modes/                   critique / adaptation / implementation / reverse
 components/              extract primitives here only when they repeat
 ```
 
@@ -38,16 +45,29 @@ components/              extract primitives here only when they repeat
 3. Include `README.md`, `index.html`, and whatever `styles.css` / `script.js` / `assets/` the idea needs.
 4. Document Name, Problem, Concept, Interaction, Motion, Information Logic, Reusability, Technical Approach, and a one-line changelog.
 5. Add an entry to `lab/experiments.json` and `DESIGN_INDEX.md`.
-6. Leave unrelated experiments untouched.
+6. If it implements a pattern, link it from `patterns/` and `lab/knowledge.json`.
+7. Leave unrelated experiments untouched.
+
+## Add a reference or pattern
+
+Do not paste a website into the repo. Analyze it.
+
+1. Critique Mode: [modes/CRITIQUE.md](modes/CRITIQUE.md)
+2. Store the specimen with [references/_template.md](references/_template.md)
+3. Extract a named pattern with [patterns/_template.md](patterns/_template.md)
+4. Register both in [lab/knowledge.json](lab/knowledge.json) and the markdown indexes
+5. If you reimplement it, add an isolated experiment — maturity becomes EXPERIMENTAL
+
+Never copy an interface into a production project. Abstract, then adapt. Write a [briefs/](briefs/) note first.
 
 ## Visual languages
 
-`tokens/tokens.css` is the contract. Files in `tokens/languages/` override it. The lab shell uses notebook + editorial. Experiments may load any language, including contradictory ones.
+`tokens/tokens.css` is the contract. Files in `tokens/languages/` override it. The lab shell uses notebook + editorial. Experiments may load any language, including contradictory ones. See [languages/TRANSLATION.md](languages/TRANSLATION.md).
 
 ## Production projects
 
-Do not build production products here. When a production project (ECG Stimulator, Thinking Database, Personal Observatory, …) hits a visual problem, experiment here, then copy or adapt the refined pattern back. Import and export are manual.
+Do not build production products here. When a production project hits a visual problem: audit it, write a brief, search the Lab, adapt the principle. Import and export are manual.
 
 ## Playground
 
-[lab/playground.html](lab/playground.html) is a controlled specimen of typography, spacing, motion, interaction, visualization, and image treatment. Use it to feel the tokens before starting an experiment.
+[lab/playground.html](lab/playground.html) is a controlled specimen of typography, spacing, motion, interaction, visualization, and image treatment.

@@ -114,30 +114,137 @@ function initLanguageSwitcher() {
   });
 }
 
+function renderKnowledge(container, items, kind) {
+  if (!items.length) {
+    container.innerHTML = `<li class="empty-note">Nothing in this layer yet.</li>`;
+    return;
+  }
+
+  container.innerHTML = items
+    .map((item) => {
+      const meta = kind === "pattern" ? `${item.maturity} · ${item.kind}` : item.kind;
+      const principle = item.principle || item.primary_strength;
+      return `<li class="gallery-item">
+        <div class="specimen" data-language="notebook">
+          <span>${kind}</span>
+          <span>${item.maturity || item.design_language || ""}</span>
+        </div>
+        <div class="gallery-body">
+          <h2><a href="${item.path}">${item.name}</a></h2>
+          <p>${principle}</p>
+        </div>
+        <div class="gallery-side">
+          <span>${meta}</span>
+          <a href="${item.path}">Open</a>
+        </div>
+      </li>`;
+    })
+    .join("");
+}
+
+function renderGraph(container, data) {
+  container.innerHTML = data.edges
+    .map((edge) => {
+      const from = edge.from.replace(":", " · ");
+      const to = edge.to.replace(":", " · ");
+      return `<li class="graph-row">
+        <span>${from}</span>
+        <span class="graph-rel">${edge.rel.replaceAll("_", " ")}</span>
+        <span>${to}</span>
+      </li>`;
+    })
+    .join("");
+}
+
+function initKnowledge(data) {
+  const list = document.querySelector("[data-knowledge]");
+  const graph = document.querySelector("[data-graph]");
+  const filters = document.querySelectorAll("[data-kfilter]");
+  if (!list) return;
+
+  const apply = (layer) => {
+    if (layer === "graph") {
+      list.hidden = true;
+      if (graph) graph.hidden = false;
+      renderGraph(graph, data);
+      return;
+    }
+    list.hidden = false;
+    if (graph) graph.hidden = true;
+    if (layer === "references") renderKnowledge(list, data.references, "reference");
+    else renderKnowledge(list, data.patterns, "pattern");
+  };
+
+  filters.forEach((button) => {
+    button.addEventListener("click", () => {
+      filters.forEach((other) => other.setAttribute("aria-pressed", "false"));
+      button.setAttribute("aria-pressed", "true");
+      apply(button.dataset.kfilter);
+    });
+  });
+
+  apply("patterns");
+}
+
+function renderFeaturedPatterns(container, data) {
+  const featured = (data.featured_patterns || [])
+    .map((id) => data.patterns.find((item) => item.id === id))
+    .filter(Boolean);
+
+  container.innerHTML = featured
+    .map((item, index) => {
+      const n = String(index + 1).padStart(2, "0");
+      return `<li>
+        <a href="${item.path.replace("../", "")}">
+          <span class="recent-idx">${n}</span>
+          <span>
+            <span class="recent-name">${item.name}</span>
+            <span class="recent-short">${item.principle}</span>
+          </span>
+          <span class="recent-meta">${item.maturity}</span>
+        </a>
+      </li>`;
+    })
+    .join("");
+}
+
 async function boot() {
   const root = document.body;
   const indexUrl = root.dataset.indexUrl;
+  const knowledgeUrl = root.dataset.knowledgeUrl;
   initLanguageSwitcher();
 
-  if (!indexUrl) return;
+  const fail = (selector, message) => {
+    const node = document.querySelector(selector);
+    if (node) node.innerHTML = `<li class="empty-note">${message} <code>python3 -m http.server 8080</code></li>`;
+  };
 
-  try {
-    const data = await loadIndex(indexUrl);
-    const recent = document.querySelector("[data-recent]");
-    if (recent) {
-      renderRecent(recent, data, root.dataset.fromLab === "true");
+  if (indexUrl) {
+    try {
+      const data = await loadIndex(indexUrl);
+      const recent = document.querySelector("[data-recent]");
+      if (recent) {
+        renderRecent(recent, data, root.dataset.fromLab === "true");
+      }
+      initGallery(data);
+    } catch (error) {
+      fail("[data-recent]", "Serve the lab over HTTP to load experiments.");
+      fail("[data-gallery]", "Serve the lab over HTTP to load the index.");
+      console.warn(error);
     }
-    initGallery(data);
-  } catch (error) {
-    const recent = document.querySelector("[data-recent]");
-    if (recent) {
-      recent.innerHTML = `<li class="empty-note">Serve the lab over HTTP to load experiments. <code>python3 -m http.server 8080</code></li>`;
+  }
+
+  if (knowledgeUrl) {
+    try {
+      const knowledge = await loadIndex(knowledgeUrl);
+      const featured = document.querySelector("[data-featured-patterns]");
+      if (featured) renderFeaturedPatterns(featured, knowledge);
+      initKnowledge(knowledge);
+    } catch (error) {
+      fail("[data-featured-patterns]", "Serve the lab over HTTP to load patterns.");
+      fail("[data-knowledge]", "Serve the lab over HTTP to load knowledge.");
+      console.warn(error);
     }
-    const gallery = document.querySelector("[data-gallery]");
-    if (gallery) {
-      gallery.innerHTML = `<li class="empty-note">Serve the lab over HTTP to load the index. <code>python3 -m http.server 8080</code></li>`;
-    }
-    console.warn(error);
   }
 }
 

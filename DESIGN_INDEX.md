@@ -162,3 +162,9 @@ No standalone experiments in these categories yet. Motion and interaction are de
 
 - **Path:** [`lab/playground.html`](lab/playground.html)
 - **Role:** controlled specimen of typography, spacing, motion, interaction, visualization, and image treatment, with a language switcher.
+
+---
+
+## Design knowledge
+
+Pattern records extracted from these experiments live in [`DESIGN_KNOWLEDGE.md`](DESIGN_KNOWLEDGE.md) and [`patterns/INDEX.md`](patterns/INDEX.md). Browse the graph in [`lab/knowledge.html`](lab/knowledge.html).
