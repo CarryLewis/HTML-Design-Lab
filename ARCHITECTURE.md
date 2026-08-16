@@ -6,6 +6,7 @@ HTML-Design-Lab 的知识系统。本文是目录契约、身份边界与晋升�
 
 - 18 步拆解：[skills/reverse-engineering-workflow.md](skills/reverse-engineering-workflow.md)
 - 接入检查：[skills/ingest-checklist.md](skills/ingest-checklist.md)
+- 自己的 HTML：[skills/own-html-workflow.md](skills/own-html-workflow.md)
 - 晋升检查：[skills/promotion-checklist.md](skills/promotion-checklist.md)
 - Cursor Skill：[.cursor/skills/design-observatory/SKILL.md](.cursor/skills/design-observatory/SKILL.md)
 
@@ -24,26 +25,32 @@ HTML-Design-Lab 的知识系统。本文是目录契约、身份边界与晋升�
 
 ## 2. 知识晋升管线
 
+两条入管线，汇合到同一套 Pattern / Principle：
+
 ```
-Capture
+第三方网站 / 截图 / 开源 UI
 → Reference（observe only）
 → 12-layer Decomposition
-→ Pattern（What）
-→ Principle（Why）
-→ Quality / License / Transfer 评估
-→ Tokens 与重写后的 Component（Library）
-→ Design System（ours）
+→ Pattern / Principle
+→ Tokens 与重写 Component
+→ Design System
+
+自己的其他项目
+→ Project HTML（record 或 make）
+→ （可选）观察自己的页面并抽取
+→ Pattern / Principle / Design System
 ```
 
-不能从截图直接变成「我们的组件」。品牌绑定或许可不明的内容停在 Reference。
+不能从别人的截图直接变成「我们的组件」。自己的页面可以在 `projects/` 里直接写 HTML。
 
 | 层 | 身份 | 允许做什么 |
 | --- | --- | --- |
 | **Reference** | 别人的实例 | 观察、拆解、截图、记录来源；不复制品牌资产，不整仓拷贝代码 |
+| **Project** | 自己的页面实例 | 记录或制作自己其他项目的 HTML；可以编辑；不要整仓搬运 |
 | **Library** | 抽象知识 | Pattern / Principle / Token 草稿；回答 What / Why / Where else |
 | **Design System** | 我们的系统 | 仅晋升后的、许可安全的、重写后的实现与 tokens |
 
-`components/` 属于 Library（实验性抽象）。`design-system/components/` 属于已晋升系统。
+`projects/` 是具体项目页面。`components/` 是 Library 里的实验性原语。`design-system/components/` 是已晋升系统。
 
 ---
 
@@ -64,6 +71,7 @@ HTML-Design-Lab/
 │   ├── screenshots/{slug}/
 │   ├── github/{slug}/
 │   └── design-systems/{slug}/
+├── projects/{project-slug}/pages/{page-slug}/
 ├── patterns/{nn-category}/
 ├── principles/
 ├── components/{slug}/
@@ -81,6 +89,8 @@ HTML-Design-Lab/
 | 类型 | 格式 | 示例 |
 | --- | --- | --- |
 | Reference | `ref.{kind}.{slug}` | `ref.web.linear-homepage` |
+| Project | `proj.{project}` | `proj.thinking-db` |
+| Project page | `proj.{project}.{page}` | `proj.thinking-db.case-page` |
 | Pattern | `pat.{category}.{slug}` | `pat.layout.editorial-split-view` |
 | Principle | `pri.{slug}` | `pri.typography-as-spatial-architecture` |
 | Component | `cmp.{slug}` | `cmp.editorial-split-view` |
@@ -136,7 +146,39 @@ references/{kind}/{slug}/
 
 ---
 
-## 5. Pattern / Principle / Component
+## 5. Project（自己的 HTML）
+
+`projects/` 收录 **自己其他项目** 的页面：可以归档（record），也可以在本仓库制作（make）。
+
+```
+projects/{project-slug}/
+├── meta.md
+├── README.md
+└── pages/{page-slug}/
+    ├── meta.md
+    ├── notes.md
+    ├── index.html
+    └── styles.css
+```
+
+| mode | 含义 |
+| --- | --- |
+| `record` | 从自己的仓库/路径归档一页，写清 origin，默认不改版 |
+| `make` | 在本仓库为该项目写 vanilla HTML + CSS |
+| `hybrid` | 归档后再改；notes 里分开 Original / Changed |
+
+分流：第三方 → `references/`；自己的页面 → `projects/`；可复用原语 → `components/`。
+
+规则：
+
+- 不要整仓搬运其他项目，只收需要的页面及其直接样式
+- 不要把第三方整页 HTML 放进本目录
+- 默认不跑 18 步；只有明确要求观察自己的页面时才拆解
+- 制作前写 purpose 与信息结构（见 [skills/own-html-workflow.md](skills/own-html-workflow.md)）
+
+---
+
+## 6. Pattern / Principle / Component
 
 ### Pattern = What
 
@@ -154,7 +196,7 @@ references/{kind}/{slug}/
 
 ---
 
-## 6. Design System 晋升
+## 7. Design System 晋升
 
 同时满足才可进入 `design-system/`：
 
@@ -176,27 +218,31 @@ references/{kind}/{slug}/
 - AI slop 反例（可标 `rejected`，仍属 Reference）
 - 未核实的网格数值（标 `Estimated`，不得当作 Design System token）
 
+自己其他项目的整页 HTML 不属于 Reference，放到 `projects/`。
+
 ---
 
-## 7. License
+## 8. License
 
 [sources/LICENSE-REGISTRY.md](sources/LICENSE-REGISTRY.md) 是总表。开源或可复用来源另写 `sources/{slug}.md`。
 
 默认：**F / unknown = 不可改编实现**。C 与 D 只允许抽象，不允许拷 HTML、logo、插画、摄影。A 必须先读 LICENSE 再标 `license_safe_to_adapt`。不要默认 GitHub 项目可以自由复制。
 
----
-
-## 8. Cursor 的职责
-
-Cursor 是 Design Reverse Engineer + Pattern Librarian + Design System Architect。
-
-收到网站 / 截图 / HTML / GitHub 时：走观察与抽取，更新 registry，**不写实现代码**。
-
-只有明确实现指令时：先跑 promotion checklist，再 Implement → Test → Review。
+**G First-party**：自己的项目。HTML 可以进入 `projects/`。仍须在项目 `meta.md` 记录 origin 与 license。夹带的第三方片段（字体、图标、抄来的皮肤）按 A–F 处理，不能因为外层是自己的项目就整段洗白。
 
 ---
 
-## 9. Anti-slop
+## 9. Cursor 的职责
+
+Cursor 是 Design Reverse Engineer + Pattern Librarian + Design System Architect + 第一方 HTML 记录员。
+
+- 第三方网站 / 截图 / 不明 HTML：观察与抽取，**不写实现代码**
+- 自己的项目、或「记录/制作我的页面」：写入 `projects/`，可以写 HTML
+- 「做成组件 / 写入 Design System」：先跑 promotion checklist，再 Implement → Test → Review
+
+---
+
+## 10. Anti-slop
 
 判断标准：Does the design improve information, interaction or identity?
 
@@ -204,6 +250,6 @@ Cursor 是 Design Reverse Engineer + Pattern Librarian + Design System Architect
 
 ---
 
-## 10. 第一期范围
+## 11. 第一期范围
 
-本仓库当前只提供骨架、模板、taxonomy、Skill 与空 catalog。不采集真实网站，不建浏览 UI，不引入打包工具。填充 Reference 需要另一次明确的分析任务。
+本仓库当前提供骨架、模板、taxonomy、Skill、空 catalog，以及空的 `projects/` 层。不采集真实第三方网站，不建浏览 UI，不引入打包工具。填充 Reference 或录入第一个自己的项目，需要另一次明确任务。

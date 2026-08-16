@@ -1,6 +1,8 @@
 # Ingest checklist
 
-加入任意 Reference 时勾选。未完成前不要谈实现。
+加入任意 **第三方** Reference 时勾选。自己的 HTML 改走 [own-html-checklist.md](own-html-checklist.md)。
+
+若材料属于「我的项目」，不要用本表，不要建在 `references/`。
 
 ## Capture
 

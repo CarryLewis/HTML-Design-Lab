@@ -12,3 +12,5 @@
 每个条目一个 `{slug}/` 文件夹，从 [templates/reference.md](../templates/reference.md) 与 [templates/observation.md](../templates/observation.md) 复制。
 
 必做：`meta.md`、`observation.md`、来源分类 A–F、许可登记。有截图则放 `screenshots/`，禁止只有图没有观察。
+
+自己其他项目的 HTML 不要放在这里，使用 [projects/](../projects/)。

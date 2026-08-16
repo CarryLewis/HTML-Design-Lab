@@ -2,6 +2,8 @@
 
 每当加入一个新的 Website / Screenshot / HTML / GitHub Reference，按顺序执行 18 步。不要跳到实现。
 
+若这是 **自己的项目**，不要用本文，改走 [own-html-workflow.md](own-html-workflow.md)。
+
 Cursor 操作指令见 [`.cursor/skills/design-observatory/SKILL.md`](../.cursor/skills/design-observatory/SKILL.md)。接入核对用 [ingest-checklist.md](ingest-checklist.md)。晋升用 [promotion-checklist.md](promotion-checklist.md)。
 
 ---

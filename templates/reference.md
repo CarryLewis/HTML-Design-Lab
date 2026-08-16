@@ -2,6 +2,7 @@
 id: ref.{kind}.{slug}
 kind: website # website | screenshot | github | design-system
 source_class: C # A Open Source | B Design System | C Public Website | D Inspiration | E Screenshot only | F Commercial / Proprietary
+# First-party (G) does not belong here — use projects/ instead
 status: captured # captured | observing | decomposed | extracted | archived
 title: ""
 url: ""

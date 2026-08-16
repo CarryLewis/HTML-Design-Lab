@@ -12,6 +12,7 @@
 | D | Inspiration | 可以 | 否（除非用户坚持完全重写且无资产） | 否 |
 | E | Screenshot only | 可以 | 否 | 否 |
 | F | Commercial / Proprietary | 可以抽象逻辑 | 否 | 否 |
+| G | First-party（自己的项目） | 可以 | 写入 `projects/` | 可以收录自己的页面；夹带的第三方片段仍按 A–F |
 | unknown | 未查清 | 可以观察 | 否 | 否 |
 
 ## 必须登记
