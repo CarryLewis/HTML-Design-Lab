@@ -1,0 +1,51 @@
+# Catalog registry
+# Machine index for the Design Observatory skill.
+# Humans browse catalog/patterns.md, catalog/principles.md, and folder READMEs.
+# Every new reference / pattern / principle / component / source / project must be appended here.
+
+schema_version: 1
+
+references: []
+# - id: ref.web.example
+#   path: references/websites/example/
+#   kind: website
+#   source_class: C
+#   status: captured
+#   title: ""
+
+projects: []
+# - id: proj.example
+#   path: projects/example/
+#   mode: record # record | make | hybrid
+#   status: planned
+#   title: ""
+#   origin_repo: ""
+#   pages:
+#     - id: proj.example.home
+#       path: projects/example/pages/home/
+
+patterns: []
+# - id: pat.layout.editorial-split-view
+#   path: patterns/01-layout/editorial-split-view.md
+#   category: layout
+#   status: extracted
+#   transferability: high
+
+principles: []
+# - id: pri.typography-as-spatial-architecture
+#   path: principles/typography-as-spatial-architecture.md
+#   status: extracted
+
+components: []
+# - id: cmp.editorial-split-view
+#   path: components/editorial-split-view/
+#   status: draft
+
+sources: []
+# - id: src.github.example
+#   path: sources/example.md
+#   license: unknown
+#   license_safe_to_adapt: false
+
+design_system: []
+# Promoted entries only. See skills/promotion-checklist.md

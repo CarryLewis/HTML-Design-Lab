@@ -1,0 +1,31 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (not used in phase 1; ignore if introduced later)
+node_modules/
+dist/
+.cache/
+
+# Screenshot originals — keep compressed analysis images only
+*.orig.png
+*.orig.jpg
+*.orig.jpeg
+*.orig.webp
+**/screenshots/raw/
+**/raw/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
