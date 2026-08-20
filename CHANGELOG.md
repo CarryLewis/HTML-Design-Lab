@@ -2,7 +2,11 @@
 
 Lab-level history. Experiment-level history lives in each experiment `README.md`.
 
-## 2026-08-16 — Own HTML recorded
+## 2026-08-20 — Knowledge graph viewing surface
+
+- Knowledge browser Graph tab is a neighborhood-focus SVG (reference → pattern → experiment), not only edge text.
+- Pattern and reference rows link to live specimens; interaction/motion tags and a dossier complete the record.
+
 
 - First-party pages from Research Brief snapshotted into `projects/research-brief/`.
 - MUJI Observatory homepage (live on carrylewis.com) and Thinking Vault talk (written; unpublished from Knowledge index; kept for iteration).
